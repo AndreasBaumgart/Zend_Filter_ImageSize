@@ -1,15 +1,19 @@
 <?php
 
-/** @var Zend_Filter_Interface */
+/**
+ * @see Zend_Filter_Interface
+ */
 require_once 'Zend/Filter/Interface.php';
 
-/** @var Polycast_Filter_ImageSize_Strategy_Interface */
-require_once 'Polycast/Filter/ImageSize/Strategy/Interface.php';
+/**
+ * @see Zend_Filter_ImageSize_Strategy_Fit
+ */
+require_once 'Zend/Filter/ImageSize/Strategy/Fit.php';
 
 /**
  * Filter for resizing images.  
  */
-class Polycast_Filter_ImageSize implements Zend_Filter_Interface
+class Zend_Filter_ImageSize implements Zend_Filter_Interface
 {
     /**
      * Default output width.
@@ -92,7 +96,7 @@ class Polycast_Filter_ImageSize implements Zend_Filter_Interface
     
     /**
      * Resizing strategy.
-     * @var Polycast_Filter_ImageSize_Strategy_Interface
+     * @var Zend_Filter_ImageSize_Strategy_Interface
      */
     protected $_strategy = null;
     
@@ -159,7 +163,7 @@ class Polycast_Filter_ImageSize implements Zend_Filter_Interface
     /**
      * Set the JPEG output compression.
      * @param int $q A value between 1 and 100.
-     * @return Polycast_Filter_ImageSize Fluent interface
+     * @return Zend_Filter_ImageSize Fluent interface
      */
     public function setQuality($q)
     {
@@ -183,10 +187,10 @@ class Polycast_Filter_ImageSize implements Zend_Filter_Interface
     
     /**
      * Set the strategy for resizing.
-     * @param Polycast_Filter_ImageSize_Strategy_Interface $strategy
-     * @return Polycast_Filter_ImageSize Fluent interface
+     * @param Zend_Filter_ImageSize_Strategy_Interface $strategy
+     * @return Zend_Filter_ImageSize Fluent interface
      */
-    public function setStrategy(Polycast_Filter_ImageSize_Strategy_Interface $strategy)
+    public function setStrategy(Zend_Filter_ImageSize_Strategy_Interface $strategy)
     {
         $this->_strategy = $strategy;
         return $this;
@@ -194,12 +198,12 @@ class Polycast_Filter_ImageSize implements Zend_Filter_Interface
     
     /**
      * Returns the strategy for resizing.
-     * @return Polycast_Filter_Imagesize_Strategy_Interface
+     * @return Zend_Filter_Imagesize_Strategy_Interface
      */
     public function getStrategy()
     {
         if(is_null($this->_strategy)) {
-            $this->_strategy = new Polycast_Filter_Imagesize_Strategy_Fit();
+            $this->_strategy = new Zend_Filter_ImageSize_Strategy_Fit();
         }
         return $this->_strategy;
     }
@@ -207,7 +211,7 @@ class Polycast_Filter_ImageSize implements Zend_Filter_Interface
     /**
      * Set the output width in pixels.
      * @param int $width
-     * @return Polycast_Filter_ImageSize Fluent interface
+     * @return Zend_Filter_ImageSize Fluent interface
      */
     public function setWidth($width) 
     {
@@ -227,7 +231,7 @@ class Polycast_Filter_ImageSize implements Zend_Filter_Interface
     /**
      * Set the output height in pixels.
      * @param int $height
-     * @return Polycast_Filter_ImageSize Fluent interface
+     * @return Zend_Filter_ImageSize Fluent interface
      */
     public function setHeight($height)
     {
@@ -247,7 +251,7 @@ class Polycast_Filter_ImageSize implements Zend_Filter_Interface
     /**
      * Set the directory to save output in.
      * @param string $dir
-     * @return Polycast_Filter_ImageSize Fluent interface
+     * @return Zend_Filter_ImageSize Fluent interface
      */
     public function setThumnailDirectory($dir)
     {
@@ -317,7 +321,7 @@ class Polycast_Filter_ImageSize implements Zend_Filter_Interface
      * jpeg, png, gif, auto or NULL.
      * 
      * @param string | null $type
-     * @return Polycast_Filter_ImageSize Fluent interface
+     * @return Zend_Filter_ImageSize Fluent interface
      */
     public function setType($type)
     {
@@ -369,7 +373,7 @@ class Polycast_Filter_ImageSize implements Zend_Filter_Interface
     /**
      * Set overwrite mode.
      * @param string $mode
-     * @return Polycast_Filter_ImageSize Fluent interface
+     * @return Zend_Filter_ImageSize Fluent interface
      */
     public function setOverwriteMode($mode)
     {

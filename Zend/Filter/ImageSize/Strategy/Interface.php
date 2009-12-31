@@ -1,6 +1,6 @@
 <?php
 
-interface Polycast_Filter_ImageSize_Strategy_Interface
+interface Zend_Filter_ImageSize_Strategy_Interface
 {
     /**
      * Return canvas resized according to the given dimensions.

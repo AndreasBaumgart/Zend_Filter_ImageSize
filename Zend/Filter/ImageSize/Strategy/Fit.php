@@ -1,14 +1,16 @@
 <?php
 
-/** @var Polycast_Filter_ImageSize_Strategy_Interface */
-require_once 'Polycast/Filter/ImageSize/Strategy/Interface.php';
+/**
+ * @see Zend_Filter_ImageSize_Strategy_Interface 
+ */
+require_once 'Zend/Filter/ImageSize/Strategy/Interface.php';
 
 /**
  * Strategy for resizing the image by fitting the content into the given 
  * dimensions.
  */
-class Polycast_Filter_Imagesize_Strategy_Fit 
-    implements Polycast_Filter_ImageSize_Strategy_Interface
+class Zend_Filter_Imagesize_Strategy_Fit 
+    implements Zend_Filter_ImageSize_Strategy_Interface
 {
     /**
      * Return canvas resized according to the given dimensions.
@@ -19,8 +21,8 @@ class Polycast_Filter_Imagesize_Strategy_Fit
      */
     public function resize($image, $width, $height)
     {
-        $origWidth = imageSX($image);
-        $origHeight = imageSY($image);
+        $origWidth = imagesx($image);
+        $origHeight = imagesy($image);
         
         $rWidth = ceil($origWidth / $width);
         $rHeight = ceil($origHeight / $height);
@@ -34,8 +36,8 @@ class Polycast_Filter_Imagesize_Strategy_Fit
         $newWidth = $origWidth / $ratio;
         $newHeight = $origHeight / $ratio;    
         
-        $resized = imageCreateTrueColor($newWidth, $newHeight);
-        imageCopyResampled($resized, $image, 0, 0, 0, 0, $newWidth, $newHeight, $origWidth, $origHeight);
+        $resized = imagecreatetruecolor($newWidth, $newHeight);
+        imagecopyresampled($resized, $image, 0, 0, 0, 0, $newWidth, $newHeight, $origWidth, $origHeight);
         
         return $resized;
     }
