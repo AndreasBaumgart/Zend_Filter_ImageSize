@@ -306,10 +306,11 @@ class Polycast_Filter_ImageSize implements Zend_Filter_Interface
             case null:
             default:
                 $ext = ".$ext";
-        } 
+        }
         
-        return sprintf('%s-%sx%s%s',
+        return sprintf('%s-%s-%sx%s%s',
             $basename,
+            md5($filename),
             $this->getWidth(),
             $this->getHeight(),
             $ext 
