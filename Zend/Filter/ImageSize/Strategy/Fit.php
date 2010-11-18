@@ -9,7 +9,7 @@ require_once 'Zend/Filter/ImageSize/Strategy/Interface.php';
  * Strategy for resizing the image by fitting the content into the given 
  * dimensions.
  */
-class Zend_Filter_Imagesize_Strategy_Fit 
+class Zend_Filter_ImageSize_Strategy_Fit 
     implements Zend_Filter_ImageSize_Strategy_Interface
 {
     /**
@@ -37,6 +37,12 @@ class Zend_Filter_Imagesize_Strategy_Fit
         $newHeight = $origHeight / $ratio;    
         
         $resized = imagecreatetruecolor($newWidth, $newHeight);
+        
+        imagesavealpha($resized, true);
+
+        $transColour = imagecolorallocatealpha($resized, 0, 0, 0, 127);
+        imagefill($resized, 0, 0, $transColour);
+        
         imagecopyresampled($resized, $image, 0, 0, 0, 0, $newWidth, $newHeight, $origWidth, $origHeight);
         
         return $resized;

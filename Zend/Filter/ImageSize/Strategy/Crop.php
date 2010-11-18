@@ -9,7 +9,7 @@ require_once 'Zend/Filter/ImageSize/Strategy/Interface.php';
  * Strategy for resizing the image so that its smalles edge fits into the frame.
  * The rest is cropped.
  */
-class Zend_Filter_Imagesize_Strategy_Crop 
+class Zend_Filter_ImageSize_Strategy_Crop 
     implements Zend_Filter_ImageSize_Strategy_Interface
 {
     /**
@@ -30,6 +30,15 @@ class Zend_Filter_Imagesize_Strategy_Crop
         $h = $origHeight * $ratio;
         
         $cropped = imagecreatetruecolor($width, $height);
+        
+        
+        imagesavealpha($cropped, true);
+
+        $transColour = imagecolorallocatealpha($cropped, 0, 0, 0, 127);
+        imagefill($cropped, 0, 0, $transColour);
+        
+        
+        
         imagecopyresampled($cropped, $image, 0, 0, 0, 0, $origWidth, $origHeight, $w, $h);
         return $cropped;
     }
