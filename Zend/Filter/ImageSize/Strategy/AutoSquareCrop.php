@@ -6,14 +6,14 @@
 require_once 'Zend/Filter/ImageSize/Strategy/Interface.php';
 
 /**
- * Strategy for resizing the image so that its smalles edge fits into the frame.
+ * Strategy for cropping the image to a square by using the smaller edge.
  * The rest is cropped.
  */
 class Zend_Filter_ImageSize_Strategy_AutoSquareCrop
     implements Zend_Filter_ImageSize_Strategy_Interface
 {
     /**
-     * Return canvas resized according to the given dimensions.
+     * Return canvas cropped to a square
      * @param resource $image GD image resource
      * @param int $width Output width
      * @param int $height Output height
