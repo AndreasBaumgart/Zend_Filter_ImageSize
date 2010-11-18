@@ -2,3 +2,9 @@
 .project
 .settings/
 
+/.externalToolBuilders
+/.project
+/build.xml
+/build.properties
+/build.default.properties
+/cache.properties

@@ -26,7 +26,7 @@ class Zend_Filter_ImageSize implements Zend_Filter_Interface
      * @var int
      */
     const DEFAULT_HEIGHT = 32;
-    
+
     /**
      * Overwrite only if input is newer than output.
      * If output is newer filter() will NOT thrown an exception but return
@@ -73,7 +73,7 @@ class Zend_Filter_ImageSize implements Zend_Filter_Interface
      * Directory to write output in.
      * @var string
      */
-    protected $_outputDir = './';
+    protected $_outputDir = '';
     
     /**
      * Output filetype. This is one of the following: gif, jpeg, png, auto.
@@ -100,6 +100,70 @@ class Zend_Filter_ImageSize implements Zend_Filter_Interface
      */
     protected $_strategy = null;
     
+    
+    /**
+     * Class constructor
+     *
+     * Options argument may be either Zend_Config object, or an array.
+     * If an array or Zend_Config object, it accepts the following keys:
+     * 'height'
+     * 'overrideMode'
+     * 'quality'
+     * 'strategy'
+     * 'thumbnailDirectory'
+     * 'type'
+     * 'width'
+     *
+     * @param  Zend_Config|array $options Target file or directory to be renamed
+     * @return void
+     */
+    public function __construct($options)
+    {
+        if ($options instanceof Zend_Config) {
+            $options = $options->toArray();
+        } elseif (!is_array($options)) {
+            require_once 'Zend/Filter/Exception.php';
+            throw new Zend_Filter_Exception('Invalid options argument provided to filter');
+        }
+        
+        $allowedOptions = array(
+            'height',
+            'overwriteMode',
+            'quality',
+            'strategy',
+            'thumbnailDirectory',
+            'type',
+            'width'
+        );
+        if (array_key_exists('strategy', $options)) {
+            
+            //todo handle this with the pluginloader
+            if (is_string($options['strategy'])) {
+                $classname = $options['strategy'];
+                $options['strategy'] = new $classname;
+            }
+            elseif (is_array($options['strategy'])) {
+                foreach ($options['strategy'] as &$strategy) {
+                    $strategy = new $strategy;
+                }
+            }
+        }
+        
+        foreach ($options as $optionName => $optionValue) {
+            
+            if (!in_array($optionName, $allowedOptions)) {
+                continue;
+            }
+            
+            $methodName = 'set' . ucfirst($optionName);
+            if (is_callable(array($this, $methodName))) {
+                call_user_func(array($this, $methodName), $optionValue);
+            }
+        }
+    }
+    
+    
+    
     /**
      * Returns the result of filtering $value
      *
@@ -109,6 +173,7 @@ class Zend_Filter_ImageSize implements Zend_Filter_Interface
      */
     public function filter($value)
     {
+        
         if (!extension_loaded('gd')) {
             throw new Zend_Filter_Exception('GD extension is not available. Can\'t process image.');
         }
@@ -118,7 +183,6 @@ class Zend_Filter_ImageSize implements Zend_Filter_Interface
         }
         
         $outputPath = $this->getThumbnailPath($value);
-        
         if(file_exists($outputPath)) {
             switch($this->_overwriteMode) {
                 case self::OVERWRITE_ALL:
@@ -154,10 +218,17 @@ class Zend_Filter_ImageSize implements Zend_Filter_Interface
             throw new Zend_Filter_Exception('Can\'t load image: ' . $filename);
         }
         
-        $resized = $this->getStrategy()->resize(
-            $image, $this->getWidth(), $this->getHeight());
+        $strategies = $this->getStrategy();
         
-        return $resized;
+        if ($strategies instanceof Zend_Filter_ImageSize_Strategy_Interface) {
+            $strategies = array($strategies);
+        }
+        foreach ($strategies as $strategy){
+            $image = $strategy->resize(
+                $image, $this->getWidth(), $this->getHeight());
+        }
+        
+        return $image;
     }
     
     /**
@@ -187,10 +258,10 @@ class Zend_Filter_ImageSize implements Zend_Filter_Interface
     
     /**
      * Set the strategy for resizing.
-     * @param Zend_Filter_ImageSize_Strategy_Interface $strategy
+     * @param array | Zend_Filter_ImageSize_Strategy_Interface $strategy
      * @return Zend_Filter_ImageSize Fluent interface
      */
-    public function setStrategy(Zend_Filter_ImageSize_Strategy_Interface $strategy)
+    public function setStrategy($strategy)
     {
         $this->_strategy = $strategy;
         return $this;
@@ -253,7 +324,7 @@ class Zend_Filter_ImageSize implements Zend_Filter_Interface
      * @param string $dir
      * @return Zend_Filter_ImageSize Fluent interface
      */
-    public function setThumnailDirectory($dir)
+    public function setThumbnailDirectory($dir)
     {
         $this->_outputDir = $dir;
         return $this;
@@ -277,9 +348,15 @@ class Zend_Filter_ImageSize implements Zend_Filter_Interface
      */
     public function getThumbnailPath($filename)
     {
-        return $this->getThumbnailDirectory() 
-            . DIRECTORY_SEPARATOR 
-            . $this->getThumbnailBasename($filename);
+        $thumbnailpath = $this->getThumbnailDirectory();
+        if ($thumbnailpath) {
+            $path = $thumbnailpath . DIRECTORY_SEPARATOR . $this->getThumbnailBasename($filename);
+        }
+        else {
+            $path = $filename;
+        }
+        
+        return $path;
     }
     
     /**
