@@ -11,6 +11,11 @@ require_once 'Zend/Filter/Interface.php';
 require_once 'Zend/Filter/ImageSize/Strategy/Fit.php';
 
 /**
+ * @see Zend_Filter_Exception
+ */
+require_once 'Zend/Filter/Exception.php';
+
+/**
  * Filter for resizing images.  
  */
 class Zend_Filter_ImageSize implements Zend_Filter_Interface
