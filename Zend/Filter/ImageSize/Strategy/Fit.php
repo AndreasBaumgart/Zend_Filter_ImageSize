@@ -24,8 +24,8 @@ class Zend_Filter_ImageSize_Strategy_Fit
         $origWidth = imagesx($image);
         $origHeight = imagesy($image);
         
-        $rWidth = ceil($origWidth / $width);
-        $rHeight = ceil($origHeight / $height);
+        $rWidth = $origWidth / $width;
+        $rHeight = $origHeight / $height;
 
         if($rWidth > $rHeight) {
             $ratio = $rWidth;
@@ -33,8 +33,8 @@ class Zend_Filter_ImageSize_Strategy_Fit
             $ratio = $rHeight;
         }
         
-        $newWidth = $origWidth / $ratio;
-        $newHeight = $origHeight / $ratio;    
+        $newWidth = ceil($origWidth / $ratio);
+        $newHeight = ceil($origHeight / $ratio);    
         
         $resized = imagecreatetruecolor($newWidth, $newHeight);
         

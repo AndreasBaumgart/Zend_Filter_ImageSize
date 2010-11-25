@@ -420,7 +420,8 @@ class Zend_Filter_ImageSize implements Zend_Filter_Interface
             $fileinfo = getimagesize($path);
             switch($fileinfo[2]) {
                 case IMAGETYPE_GIF:
-                    $outputType = 'gif';
+//                    $outputType = 'gif';
+                    $outputType = 'png';    // use png instead of gif to preserve transparency
                     break;
                 case IMAGETYPE_PNG:
                     $outputType = 'png';
