@@ -96,7 +96,7 @@ class Zend_Filter_ImageSize implements Zend_Filter_Interface
     
     /**
      * Resizing strategy.
-     * @var Zend_Filter_ImageSize_Strategy_Interface
+     * @var array | Zend_Filter_ImageSize_Strategy_Interface
      */
     protected $_strategy = null;
     
@@ -223,7 +223,10 @@ class Zend_Filter_ImageSize implements Zend_Filter_Interface
         if ($strategies instanceof Zend_Filter_ImageSize_Strategy_Interface) {
             $strategies = array($strategies);
         }
+        
+        count($strategies);
         foreach ($strategies as $strategy){
+            
             $image = $strategy->resize(
                 $image, $this->getWidth(), $this->getHeight());
         }
@@ -418,6 +421,7 @@ class Zend_Filter_ImageSize implements Zend_Filter_Interface
     {
         if(is_null($this->_type) || 'auto' == $this->_type) {
             $fileinfo = getimagesize($path);
+            
             switch($fileinfo[2]) {
                 case IMAGETYPE_GIF:
 //                    $outputType = 'gif';
