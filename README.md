@@ -1,7 +1,12 @@
+# Zend\_Filter\_ImageSize
+
 Zend Framework extension providing filter facitilies for image size.
 
-Most simple example:
+## Usage
 
+### Simple Example
+
+```php
 <?php
 require_once 'Zend/Filter/ImageSize.php';
 $filter = new Zend_Filter_ImageSize();
@@ -14,13 +19,16 @@ $fh = fopen($output, 'r');
 fpassthru($fh);
 fclose($fh);
 ?>
+```
 
-More complex example:
+### Advanced Example
+
  - Crop the image instead of fit it into the bounding box.
  - Output as JPEG (actually this is the same as above as it is the default)
  - Set a specific output directory (default = ./)
  - Use caching, i.e. override only if source image is newer than thumbnail (if exists)
 
+```php
 <?php
 require_once 'Zend/Filter/ImageSize.php';
 require_once 'Zend/Filter/ImageSize/Strategy/Crop.php';
@@ -41,3 +49,4 @@ fpassthru($fh);
 fclose($fh);
 
 ?>
+```
