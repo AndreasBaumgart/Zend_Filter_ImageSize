@@ -39,14 +39,8 @@ class Zend_Filter_ImageSize_Strategy_FitFill
         $newWidth = ceil($origWidth / $ratio);
         $newHeight = ceil($origHeight / $ratio);    
         
-        if ($height > $width) {
-            $dstX = 0;
-            $dstY = ($height - $newHeight) / 2;
-        }
-        else {
-            $dstX = ($width - $newWidth) / 2;
-            $dstY = 0;
-        }
+        $dstX = ($width - $newWidth) / 2;
+        $dstY = ($height - $newHeight) / 2;
         
         $resized = imagecreatetruecolor($width, $height);
         
