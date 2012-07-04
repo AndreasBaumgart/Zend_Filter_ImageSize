@@ -1,0 +1,10 @@
+{
+    "name": "flagbit/zend-filter-imagesize",
+    "type": "library",
+    "require": {
+        "php": ">=5.2.4"
+    },
+    "autoload": {
+        "psr-0": {"Zend_Filter": "Zend"}
+    }
+}
