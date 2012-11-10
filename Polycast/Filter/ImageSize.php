@@ -6,7 +6,7 @@
 require_once 'Zend/Filter/Interface.php';
 
 /**
- * @see Zend_Filter_ImageSize_Strategy_Fit
+ * @see Polycast_Filter_ImageSize_Strategy_Fit
  */
 require_once 'Zend/Filter/ImageSize/Strategy/Fit.php';
 
@@ -18,7 +18,7 @@ require_once 'Zend/Filter/Exception.php';
 /**
  * Filter for resizing images.  
  */
-class Zend_Filter_ImageSize implements Zend_Filter_Interface
+class Polycast_Filter_ImageSize implements Zend_Filter_Interface
 {
     /**
      * Default output width.
@@ -101,7 +101,7 @@ class Zend_Filter_ImageSize implements Zend_Filter_Interface
     
     /**
      * Resizing strategy.
-     * @var Zend_Filter_ImageSize_Strategy_Interface
+     * @var Polycast_Filter_ImageSize_Strategy_Interface
      */
     protected $_strategy = null;
     
@@ -168,7 +168,7 @@ class Zend_Filter_ImageSize implements Zend_Filter_Interface
     /**
      * Set the JPEG output compression.
      * @param int $q A value between 1 and 100.
-     * @return Zend_Filter_ImageSize Fluent interface
+     * @return Polycast_Filter_ImageSize Fluent interface
      */
     public function setQuality($q)
     {
@@ -192,10 +192,10 @@ class Zend_Filter_ImageSize implements Zend_Filter_Interface
     
     /**
      * Set the strategy for resizing.
-     * @param Zend_Filter_ImageSize_Strategy_Interface $strategy
-     * @return Zend_Filter_ImageSize Fluent interface
+     * @param Polycast_Filter_ImageSize_Strategy_Interface $strategy
+     * @return Polycast_Filter_ImageSize Fluent interface
      */
-    public function setStrategy(Zend_Filter_ImageSize_Strategy_Interface $strategy)
+    public function setStrategy(Polycast_Filter_ImageSize_Strategy_Interface $strategy)
     {
         $this->_strategy = $strategy;
         return $this;
@@ -203,12 +203,12 @@ class Zend_Filter_ImageSize implements Zend_Filter_Interface
     
     /**
      * Returns the strategy for resizing.
-     * @return Zend_Filter_Imagesize_Strategy_Interface
+     * @return Polycast_Filter_ImageSize_Strategy_Interface
      */
     public function getStrategy()
     {
         if(is_null($this->_strategy)) {
-            $this->_strategy = new Zend_Filter_ImageSize_Strategy_Fit();
+            $this->_strategy = new Polycast_Filter_ImageSize_Strategy_Fit();
         }
         return $this->_strategy;
     }
@@ -216,7 +216,7 @@ class Zend_Filter_ImageSize implements Zend_Filter_Interface
     /**
      * Set the output width in pixels.
      * @param int $width
-     * @return Zend_Filter_ImageSize Fluent interface
+     * @return Polycast_Filter_ImageSize Fluent interface
      */
     public function setWidth($width) 
     {
@@ -236,7 +236,7 @@ class Zend_Filter_ImageSize implements Zend_Filter_Interface
     /**
      * Set the output height in pixels.
      * @param int $height
-     * @return Zend_Filter_ImageSize Fluent interface
+     * @return Polycast_Filter_ImageSize Fluent interface
      */
     public function setHeight($height)
     {
@@ -256,7 +256,7 @@ class Zend_Filter_ImageSize implements Zend_Filter_Interface
     /**
      * Set the directory to save output in.
      * @param string $dir
-     * @return Zend_Filter_ImageSize Fluent interface
+     * @return Polycast_Filter_ImageSize Fluent interface
      */
     public function setThumnailDirectory($dir)
     {
@@ -326,7 +326,7 @@ class Zend_Filter_ImageSize implements Zend_Filter_Interface
      * jpeg, png, gif, auto or NULL.
      * 
      * @param string | null $type
-     * @return Zend_Filter_ImageSize Fluent interface
+     * @return Polycast_Filter_ImageSize Fluent interface
      */
     public function setType($type)
     {
@@ -378,7 +378,7 @@ class Zend_Filter_ImageSize implements Zend_Filter_Interface
     /**
      * Set overwrite mode.
      * @param string $mode
-     * @return Zend_Filter_ImageSize Fluent interface
+     * @return Polycast_Filter_ImageSize Fluent interface
      */
     public function setOverwriteMode($mode)
     {

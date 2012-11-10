@@ -1,16 +1,16 @@
 <?php
 
 /**
- * @see Zend_Filter_ImageSize_Strategy_Interface 
+ * @see Polycast_Filter_ImageSize_Strategy_Interface 
  */
-require_once 'Zend/Filter/ImageSize/Strategy/Interface.php';
+require_once 'Polycast/Filter/ImageSize/Strategy/Interface.php';
 
 /**
  * Strategy for resizing the image so that its smalles edge fits into the frame.
  * The rest is cropped.
  */
-class Zend_Filter_Imagesize_Strategy_Crop 
-    implements Zend_Filter_ImageSize_Strategy_Interface
+class Polycast_Filter_ImageSize_Strategy_Crop 
+    implements Polycast_Filter_ImageSize_Strategy_Interface
 {
     /**
      * Return canvas resized according to the given dimensions.
