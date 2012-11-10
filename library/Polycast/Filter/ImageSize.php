@@ -8,7 +8,7 @@ require_once 'Zend/Filter/Interface.php';
 /**
  * @see Polycast_Filter_ImageSize_Strategy_Fit
  */
-require_once 'Zend/Filter/ImageSize/Strategy/Fit.php';
+require_once 'Polycast/Filter/ImageSize/Strategy/Fit.php';
 
 /**
  * @see Zend_Filter_Exception

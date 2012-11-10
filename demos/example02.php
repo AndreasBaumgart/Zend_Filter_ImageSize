@@ -3,8 +3,8 @@
 // adjust setup.php according to your environment
 require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . "setup.php";
 
-require_once 'Zend/Filter/ImageSize.php';
-require_once 'Zend/Filter/ImageSize/Strategy/Crop.php';
+require_once 'Polycast/Filter/ImageSize.php';
+require_once 'Polycast/Filter/ImageSize/Strategy/Crop.php';
 
 $filter = new Polycast_Filter_ImageSize();
 $output = $filter->setHeight(32)
