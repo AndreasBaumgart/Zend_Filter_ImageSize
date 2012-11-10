@@ -1,0 +1,30 @@
+{
+    "name": "polycast/polycast-filter-imagesize",
+    "description": "Zend_Filter implementation for resizing images using differen strategies.",
+    "type": "library",
+    "keywords": [
+        "framework",
+        "zf1",
+        "filter",
+        "image",
+        "resizing"
+    ],
+    "homepage": "https://github.com/polycaster/Zend_Filter_ImageSize",
+    "license": "BSD-3-Clause",
+    "require": {
+        "php": ">=5.2.4",
+        "zendframework/zendframework1": ">=1.10"
+    },
+    "autoload": {
+        "psr-0": {
+            "Polycast": "library/"
+        }
+    },
+    "include-path": [
+        "library/"
+    ],
+    "config": {
+    },
+    "extra": {
+    }
+}
