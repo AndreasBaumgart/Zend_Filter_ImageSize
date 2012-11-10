@@ -4,7 +4,7 @@ Most simple example:
 
 <?php
 require_once 'Zend/Filter/ImageSize.php';
-$filter = new Zend_Filter_ImageSize();
+$filter = new Polycast_Filter_ImageSize();
 $output = $filter->setHeight(100)
     ->setWidth(200)
     ->filter('./orig.jpg');
@@ -25,14 +25,14 @@ More complex example:
 require_once 'Zend/Filter/ImageSize.php';
 require_once 'Zend/Filter/ImageSize/Strategy/Crop.php';
 
-$filter = new Zend_Filter_ImageSize();
+$filter = new Polycast_Filter_ImageSize();
 $output = $filter->setHeight(100)
     ->setWidth(200)
     ->setQuality(75)
-    ->setOverwriteMode(Zend_Filter_ImageSize::OVERWRITE_ALL)
+    ->setOverwriteMode(Polycast_Filter_ImageSize::OVERWRITE_ALL)
     ->setThumnailDirectory('./')
     ->setType('jpeg')
-    ->setStrategy(new Zend_Filter_Imagesize_Strategy_Crop())
+    ->setStrategy(new Polycast_Filter_ImageSize_Strategy_Crop())
     ->filter('./orig.jpg');
 
 header('Content-Type: image/jpeg');
