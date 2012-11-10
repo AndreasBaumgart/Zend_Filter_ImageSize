@@ -10,7 +10,7 @@
         "resizing"
     ],
     "homepage": "https://github.com/polycaster/Zend_Filter_ImageSize",
-    "license": "BSD-3-Clause",
+    "license": "MIT",
     "require": {
         "php": ">=5.2.4",
         "zendframework/zendframework1": ">=1.10"
