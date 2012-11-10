@@ -136,7 +136,7 @@ class Polycast_Filter_ImageSize implements Zend_Filter_Interface
                     }
                     break;
                 case self::OVERWRITE_NONE:
-                    throw new Zend_Filter_Exception('Can\'t create thumbnail. File already exists: ' . $outputPath);
+                    throw new Zend_Filter_Exception('Can\'t create thumbnail. File already exists: ' . $outputPath . '. Perhaps you should consider using a less defensive override mode.');
                 default:
                     break;
             }
