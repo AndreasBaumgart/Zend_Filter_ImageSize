@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<phpunit bootstrap = "./TestHelper.php">
+	
+	<testsuites>
+		<testsuite name="Polycast/Filter/ImageSize Test Suite">
+            <directory>./</directory>
+		</testsuite>
+	</testsuites>
+	
+	<filter>
+		<whitelist>
+			<directory suffix=".php">../library/Polycast/</directory>
+			<exclude></exclude>  
+		</whitelist>
+	</filter>
+	
+<logging>
+<!-- 	<log type="coverage-html" target="output/report" charset="UTF-8" yui="true" highlight="false" lowUpperBound="35" highLowerBound="70"/> -->
+<!--	<log type="coverage-clover" target="output/coverage.xml"/>-->
+<!--	<log type="testdox-html" target="output/testdox.html"/>-->
+<!--	<log type="testdox-text" target="output/testdox.txt"/>-->
+</logging>
+	
+</phpunit> 
