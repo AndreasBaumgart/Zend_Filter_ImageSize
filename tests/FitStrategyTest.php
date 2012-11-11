@@ -16,7 +16,6 @@ class FitStrategyTest extends ImageFilterTestCase
         
         $this->assertFilteredImageHasRatio(1/2);
         $this->assertFilteredImageHeightEqualsBoxHeight();
-        $this->assertFilteredImageWidthLesserThanBoxWidth();
     }
     
     public function testFit_3x1_Image_in_2x1_Box()
@@ -29,7 +28,6 @@ class FitStrategyTest extends ImageFilterTestCase
         
         $this->assertFilteredImageHasRatio(1/3);
         $this->assertFilteredImageWidthEqualsBoxWidth();
-        $this->assertFilteredImageHeightLesserThanBoxHeight();
     }
     
     public function testFit_2x1_Image_in_2x1_Box()
@@ -42,7 +40,6 @@ class FitStrategyTest extends ImageFilterTestCase
         
         $this->assertFilteredImageHasRatio(1/2);
         $this->assertFilteredImageWidthEqualsBoxWidth();
-        $this->assertFilteredImageHeightEqualsBoxHeight();
     }
     
     public function testFit_3x4_Image_in_1x2_Box()
@@ -55,6 +52,5 @@ class FitStrategyTest extends ImageFilterTestCase
         
         $this->assertFilteredImageHasRatio(4/3);
         $this->assertFilteredImageWidthEqualsBoxWidth();
-        $this->assertFilteredImageHeightLesserThanBoxHeight();
     }
 }
