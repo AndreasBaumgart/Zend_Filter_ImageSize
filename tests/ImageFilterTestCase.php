@@ -27,7 +27,7 @@ class ImageFilterTestCase extends PHPUnit_Framework_TestCase
         parent::tearDown();
         
         foreach (glob(TESTING_TMP_DIR . '/*.jpg') as $obsoleteJpegFile) {
-//            @unlink($obsoleteJpegFile);
+            @unlink($obsoleteJpegFile);
         }
     }
 
