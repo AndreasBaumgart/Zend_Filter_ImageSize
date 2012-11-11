@@ -35,14 +35,27 @@ require_once 'Polycast/Filter/ImageSize/Configuration/Standard.php';
 require_once 'Zend/Filter/Exception.php';
 
 /**
- * Filter for resizing images.  
+ * Filter for resizing images using a given strategy. 
  */
 class Polycast_Filter_ImageSize implements Zend_Filter_Interface
 {
+    /**
+     * Override files only if older. This overwrite mode can be used for 
+     * caching.
+     */
     const OVERWRITE_CACHE_OLDER = 'cache_older';
-    const OVERWRITE_NONE = 'none';
-    const OVERWRITE_ALL = 'all';
     
+    /**
+     * Never overwrite an existing file. Every attempt will result in an 
+     * exception.
+     */
+    const OVERWRITE_NONE = 'none';
+    
+    /**
+     * Don't care to overwrite files. 
+     */
+    const OVERWRITE_ALL = 'all';
+
     const TYPE_PNG = 'png';
     const TYPE_JPEG = 'jpeg';
     const TYPE_GIF = 'gif';
@@ -52,15 +65,34 @@ class Polycast_Filter_ImageSize implements Zend_Filter_Interface
 
     /** @var Polycast_Filter_ImageSize_Configuration_Interface */
     protected $_config = null;
-    
+
+    /**
+     * Name of the filename passed to filter(). Used for processing. 
+     * @var string
+     */
     protected $_inputFilename = null;
+    
+    /**
+     * The image resource of the resized image. Set after _resize() was called.
+     * @var resource
+     */
     protected $_resizedImage = null;
     
+    /**
+     * Constructor.
+     */
     public function __construct()
     {
         $this->_checkDependencies();
     }
     
+    /**
+     * Returns the configuration object of the filter. If no configuration 
+     * object has been assigned before a standard configuration will be created
+     * on first call.
+     * 
+     * @return Polycast_Filter_ImageSize_Configuration_Interface
+     */
     public function getConfig()
     {
         if (null === $this->_config) {
@@ -69,12 +101,21 @@ class Polycast_Filter_ImageSize implements Zend_Filter_Interface
         return $this->_config;
     }
     
+    /**
+     * Sets the configuration object of the filter. Replaces existing 
+     * configuration.
+     * 
+     * @param Polycast_Filter_ImageSize_Configuration_Interface $configSet
+     */
     public function setConfig(Polycast_Filter_ImageSize_Configuration_Interface $config)
     {
         $this->_config = $config;
     }
     
     /**
+     * Returns the Polycast_Filter_ImageSize_PathBuilder_Interface instance
+     * used to build the path of output files.
+     * 
      * @return Polycast_Filter_ImageSize_PathBuilder_Interface
      */
     public function getOutputPathBuilder()
@@ -85,12 +126,32 @@ class Polycast_Filter_ImageSize implements Zend_Filter_Interface
         return $this->_pathBuilder;
     }
     
+    /**
+     * Sets the Polycast_Filter_ImageSize_PathBuilder_Interface instance used
+     * to build the path of output files.
+     * 
+     * @param Polycast_Filter_ImageSize_PathBuilder_Interface $pathBuilder
+     * @return Polycast_Filter_ImageSize
+     */
     public function setOutputPathBuilder(Polycast_Filter_ImageSize_PathBuilder_Interface $pathBuilder)
     {
         $this->_pathBuilder = $pathBuilder;
         return $this;
     }
     
+    /**
+     * Returns the output path for a given input file.
+     * 
+     * If you use this method to predict the output name before the call to
+     * filter(), keep in mind, that under some circumstances the returned path
+     * may not match the result of filter(). This is only the case if the
+     * attached path builder instance uses criteria which are not part of the 
+     * filter's configuration (e.q. timestamps). 
+     * 
+     * @param string $filename
+     * @return string
+     * @throws Zend_Filter_Exception
+     */
     public function getOutputPath($filename)
     {
         if (!$filename) {
@@ -166,11 +227,6 @@ class Polycast_Filter_ImageSize implements Zend_Filter_Interface
         }
     }
     
-    /**
-     * Load the image and resize it using the assigned strategy.
-     * @param string $filename Filename of the input file.
-     * @return resource GD image resource.
-     */
     protected function _resize()
     {
         $image = imagecreatefromstring(file_get_contents($this->_inputFilename));

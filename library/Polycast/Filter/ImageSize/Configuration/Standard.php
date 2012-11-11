@@ -1,4 +1,8 @@
 <?php
+// Copyright (c) 2009-2012 Andreas Baumgart
+// 
+// This source file is subject to the MIT license that is bundled with this 
+// package in the file LICENSE.txt.
 
 class Polycast_Filter_ImageSize_Configuration_Standard implements Polycast_Filter_ImageSize_Configuration_Interface 
 {
@@ -52,34 +56,60 @@ class Polycast_Filter_ImageSize_Configuration_Standard implements Polycast_Filte
      */
     protected $_type = 'auto';
 
-    
+    /**
+     * Returns the width of the output in pixels.
+     * 
+     * @return int
+     */
     public function getWidth()
     {
         return $this->_width;
     }
     
+    /**
+     * Returns the height of the output in pixels.
+     * 
+     * @return int
+     */
     public function getHeight()
     {
         return $this->_height;
     }
     
+    /**
+     * Returns the quality of the output.
+     * 
+     * @return int
+     */
     public function getQuality()
     {
         return $this->_quality;
     }
     
+    /**
+     * Returns the strategy used for resizing.
+     * 
+     * @return Polycast_Filter_ImageSize_Strategy_Interface
+     */
     public function getStrategy()
     {
         return $this->_strategy;
     }
     
+    /**
+     * Returns the name of the ruleset which is applied when an output file
+     * already exist. 
+     * 
+     * @return string
+     */
     public function getOverwriteMode()
     {
         return $this->_overrideMode;
     }
     
     /**
-     * Get the output filetype.
+     * Returns the image type configured for output images.
+     * 
      * @return string
      */
     public function getOutputImageType()
@@ -87,6 +117,12 @@ class Polycast_Filter_ImageSize_Configuration_Standard implements Polycast_Filte
         return $this->_type;
     }
     
+    /**
+     * Sets the width in pixels.
+     * 
+     * @param int $width An integer >= 1
+     * @return Polycast_Filter_ImageSize_Configuration_Interface Fluent interface
+     */
     public function setWidth($width)
     {
         if ($width < 1) {
@@ -96,6 +132,11 @@ class Polycast_Filter_ImageSize_Configuration_Standard implements Polycast_Filte
         return $this;
     }
     
+    /**
+     * Sets the height in pixels.
+     * @param int $height An integer >= 1
+     * @return Polycast_Filter_ImageSize_Configuration_Interface Fluent interface
+     */
     public function setHeight($height)
     {
         if ($height < 1) {
@@ -105,6 +146,13 @@ class Polycast_Filter_ImageSize_Configuration_Standard implements Polycast_Filte
         return $this;
     }
     
+    /**
+     * Sets the quality of the image.
+     * The quality is defined as an integer value ranging from 1 to 100.
+     * 
+     * @param int $width An integer >= 1 && <= 100
+     * @return Polycast_Filter_ImageSize_Configuration_Interface Fluent interface
+     */
     public function setQuality($quality)
     {
         if ($quality < 1 || $quality > 100) {
@@ -114,12 +162,25 @@ class Polycast_Filter_ImageSize_Configuration_Standard implements Polycast_Filte
         return $this;
     }
     
+    /**
+     * Sets the strategy used for resizing the image.
+     * 
+     * @param Polycast_Filter_ImageSize_Strategy_Interface $strategy
+     * @return Polycast_Filter_ImageSize_Configuration_Interface Fluent interface
+     */
     public function setStrategy(Polycast_Filter_ImageSize_Strategy_Interface $strategy)
     {
         $this->_strategy = $strategy;
         return $this;
     }
     
+    /**
+     * Sets the name of the ruleset which is applied when an output file already
+     * exists.
+     * 
+     * @param string $mode
+     * @return Polycast_Filter_ImageSize_Configuration_Interface Fluent interface
+     */
     public function setOverwriteMode($mode)
     {
         $this->_overrideMode = $mode;
