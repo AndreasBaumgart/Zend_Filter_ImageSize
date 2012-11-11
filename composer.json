@@ -11,6 +11,14 @@
     ],
     "homepage": "https://github.com/polycaster/Zend_Filter_ImageSize",
     "license": "MIT",
+    "authors": [
+        {
+            "name": "Andreas Baumgart",
+            "email": "andreas@polycast.de",
+            "homepage": "http://polycast.de",
+            "role": "Developer"
+        }
+    ],
     "require": {
         "php": ">=5.2.4",
         "zendframework/zendframework1": ">=1.10"
