@@ -53,12 +53,15 @@ class ImageFilterTestCase extends PHPUnit_Framework_TestCase
         }
         
         $filter = new Polycast_Filter_ImageSize();
-        $filter->setType('jpeg')
+        $config = $filter->getConfig();
+        
+        $config->setOutputImageType('jpeg')
                ->setOverwriteMode(Polycast_Filter_ImageSize::OVERWRITE_ALL)
-               ->setThumnailDirectory(TESTING_TMP_DIR)
                ->setWidth($this->box[0])
                ->setHeight($this->box[1])
                ->setStrategy($this->strategy);
+
+        $filter->setOutputPathBuilder(new Polycast_Filter_ImageSize_PathBuilder_Standard(TESTING_TMP_DIR));
         
         $this->outputPath = $filter->filter($this->sourceImage);
     }
