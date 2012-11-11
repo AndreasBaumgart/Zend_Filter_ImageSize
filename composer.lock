@@ -1,5 +1,5 @@
 {
-    "hash": "197ccb484e38b0b9db9a4cb4e3bc2c75",
+    "hash": "4143592798a5dc48a6f241b8ed1bd5e9",
     "packages": [
         {
             "name": "zendframework/zendframework1",
@@ -47,7 +47,9 @@
             ]
         }
     ],
-    "packages-dev": null,
+    "packages-dev": [
+
+    ],
     "aliases": [
 
     ],

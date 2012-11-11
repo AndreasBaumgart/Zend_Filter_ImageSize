@@ -6,6 +6,19 @@
 
 class ExamplesTest extends ImageFilterTestCase
 {
+    public function testExample01_Minimal()
+    {
+        $filter = new Polycast_Filter_ImageSize();
+        $filter->setOutputPathBuilder(new Polycast_Filter_ImageSize_PathBuilder_Standard((TESTING_TMP_DIR)));
+        $filter->getConfig()
+               ->setWidth(200)
+               ->setHeight(100);
+        $outputPath = $filter->filter(TESTING_ASSETS_DIR . '/rick.jpg');
+        
+        $this->assertFileExists($outputPath);
+        $this->assertImageFitsInBox(200, 100, $outputPath);
+    }
+    
     public function testExample01_FitImageIntoABox()
     {
         $inputPath = TESTING_ASSETS_DIR . '/rick.jpg'; 

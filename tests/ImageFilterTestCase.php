@@ -101,7 +101,7 @@ class ImageFilterTestCase extends PHPUnit_Framework_TestCase
         list($actualWidth, $actualHeight) = $this->getImageSize($imagePath);
         
         $atLeastOneSideEqualBoxSide = $actualWidth == $expectedWidth || $actualHeight == $expectedHeight;
-        $noSideOverlaps = $actualWidth >= $expectedWidth && $actualHeight <= $expectedHeight;
+        $noSideOverlaps = $actualWidth <= $expectedWidth && $actualHeight <= $expectedHeight;
         
         if (!$atLeastOneSideEqualBoxSide || !$noSideOverlaps) {
             $this->fail('Image does not fill the given box (' . $expectedWidth . 

@@ -121,7 +121,7 @@ class Polycast_Filter_ImageSize implements Zend_Filter_Interface
     public function getOutputPathBuilder()
     {
         if (null === $this->_pathBuilder) {
-            $this->_pathBuilder = new Polycast_Filter_ImageSize_PathBuilder_Standard();
+            $this->_pathBuilder = new Polycast_Filter_ImageSize_PathBuilder_Standard('./');
         }
         return $this->_pathBuilder;
     }

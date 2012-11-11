@@ -93,6 +93,9 @@ class Polycast_Filter_ImageSize_Configuration_Standard implements Polycast_Filte
      */
     public function getStrategy()
     {
+        if (null === $this->_strategy) {
+            $this->_strategy = new Polycast_Filter_ImageSize_Strategy_Fit();
+        }
         return $this->_strategy;
     }
     
@@ -104,7 +107,7 @@ class Polycast_Filter_ImageSize_Configuration_Standard implements Polycast_Filte
      */
     public function getOverwriteMode()
     {
-        return $this->_overrideMode;
+        return $this->_overwriteMode;
     }
     
     /**
@@ -183,7 +186,7 @@ class Polycast_Filter_ImageSize_Configuration_Standard implements Polycast_Filte
      */
     public function setOverwriteMode($mode)
     {
-        $this->_overrideMode = $mode;
+        $this->_overwriteMode = $mode;
         return $this;
     }
     

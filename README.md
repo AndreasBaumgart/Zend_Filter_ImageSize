@@ -13,10 +13,10 @@
     $filter->getConfig()
         ->setHeight(100)
         ->setWidth(200);
-    $output = $filter->filter('./orig.jpg');
+    $outputPath = $filter->filter('./orig.jpg');
 
     header('Content-Type: image/jpeg');
-    $fh = fopen($output, 'r');
+    $fh = fopen($outputPath, 'r');
     fpassthru($fh);
     fclose($fh);
     ?>
@@ -34,18 +34,19 @@
     <?php
     require_once 'Polycast/Filter/ImageSize.php';
     require_once 'Polycast/Filter/ImageSize/Strategy/Crop.php';
+    require_once 'Polycast/Filter/ImageSize/PathBuilder/Standard.php';
     
     $filter = new Polycast_Filter_ImageSize();
     
     $filter->setOutputPathBuilder(
-            new Polycast_Filter_ImageSize_PathBuilder_Standard(('images/thumbnails')));
+            new Polycast_Filter_ImageSize_PathBuilder_Standard('images/thumbnails'));
 
     $filter->getConfig()
            ->setHeight(100)
            ->setWidth(200)
            ->setQuality(75)
            ->setOverwriteMode(Polycast_Filter_ImageSize::OVERWRITE_ALL)
-           ->setType('jpeg')
+           ->setOutputImageType(Polycast_Filter_ImageSize::TYPE_JPEG)
            ->setStrategy(new Polycast_Filter_ImageSize_Strategy_Crop());
 
     $output = $filter->filter('./orig.jpg');
@@ -74,7 +75,7 @@ like this:
         "polycast/polycast-filter-imagesize": "master-dev"
     },
 
-If you want to develop this library use the following command, which will 
+If you want to work on this library use the following command, which will 
 checkout the project from github and install all dependencies needed for 
 development.
 
