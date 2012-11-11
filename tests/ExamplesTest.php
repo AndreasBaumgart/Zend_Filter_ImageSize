@@ -19,7 +19,7 @@ class ExamplesTest extends ImageFilterTestCase
         $this->assertImageFitsInBox(200, 100, $outputPath);
     }
     
-    public function testExample01_FitImageIntoABox()
+    public function testExample02_FitImageIntoABox()
     {
         $inputPath = TESTING_ASSETS_DIR . '/rick.jpg'; 
         $outputDirectory = TESTING_TMP_DIR; 
@@ -46,7 +46,7 @@ class ExamplesTest extends ImageFilterTestCase
         $this->assertImageFitsInBox(100, 100, $actualOutputPath);
     }
     
-    public function testExample02_CropImageToFitIntoABox()
+    public function testExample03_CropImageToFitIntoABox()
     {
         $inputPath = TESTING_ASSETS_DIR . '/rick.jpg'; 
         $outputDirectory = TESTING_TMP_DIR; 
@@ -67,7 +67,7 @@ class ExamplesTest extends ImageFilterTestCase
         $this->assertImageSizeEquals(100, 100, $outputPath);        
     }
     
-    public function testExample03_CustomOutputPathBuilder()
+    public function testExample04_CustomOutputPathBuilder()
     {
         $inputPath = TESTING_ASSETS_DIR . '/rick.jpg'; 
         $outputDirectory = TESTING_TMP_DIR; 
