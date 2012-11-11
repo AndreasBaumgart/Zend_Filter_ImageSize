@@ -1,6 +1,6 @@
 {
     "name": "polycast/polycast-filter-imagesize",
-    "description": "Zend_Filter implementation for resizing images using differen strategies.",
+    "description": "Zend_Filter implementation for resizing images using different strategies.",
     "type": "library",
     "keywords": [
         "framework",
