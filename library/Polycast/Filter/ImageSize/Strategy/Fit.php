@@ -27,18 +27,18 @@ class Polycast_Filter_ImageSize_Strategy_Fit
     {
         $origWidth = imagesx($image);
         $origHeight = imagesy($image);
+            
+        $origRatio = $origHeight / $origWidth;
+        $newRatio = $height / $width;
         
-        $rWidth = ceil($origWidth / $width);
-        $rHeight = ceil($origHeight / $height);
-
-        if($rWidth > $rHeight) {
-            $ratio = $rWidth;
+        if ($newRatio <= $origRatio) {
+            $newHeight = $height;
+            $newWidth = $height / $origRatio;
+            
         } else {
-            $ratio = $rHeight;
+            $newWidth = $width;
+            $newHeight = $width * $origRatio;
         }
-        
-        $newWidth = $origWidth / $ratio;
-        $newHeight = $origHeight / $ratio;    
         
         $resized = imagecreatetruecolor($newWidth, $newHeight);
         imagecopyresampled($resized, $image, 0, 0, 0, 0, $newWidth, $newHeight, $origWidth, $origHeight);

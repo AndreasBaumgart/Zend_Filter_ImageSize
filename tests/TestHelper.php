@@ -13,3 +13,4 @@ define('TESTING_TMP_DIR', TESTING_BASE_DIR . '/_tmp/');
 require '../vendor/autoload.php';
 
 require_once 'PHPUnit/Framework/TestCase.php';
+require TESTING_BASE_DIR . '/ImageFilterTestCase.php';

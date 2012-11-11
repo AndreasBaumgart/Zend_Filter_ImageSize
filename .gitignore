@@ -6,3 +6,4 @@ nbproject/
 library/Zend/
 vendor
 composer.phar
+tests/_tmp/*
