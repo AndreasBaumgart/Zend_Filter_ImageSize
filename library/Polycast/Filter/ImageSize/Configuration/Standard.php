@@ -73,7 +73,7 @@ class Polycast_Filter_ImageSize_Configuration_Standard implements Polycast_Filte
         return $this->_strategy;
     }
     
-    public function getOverrideMode()
+    public function getOverwriteMode()
     {
         return $this->_overrideMode;
     }
@@ -120,7 +120,7 @@ class Polycast_Filter_ImageSize_Configuration_Standard implements Polycast_Filte
         return $this;
     }
     
-    public function setOverrideMode($mode)
+    public function setOverwriteMode($mode)
     {
         $this->_overrideMode = $mode;
         return $this;

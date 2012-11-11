@@ -145,7 +145,7 @@ class Polycast_Filter_ImageSize implements Zend_Filter_Interface
     
     protected function _isCached()
     {
-        if ($this->getConfig()->getOverrideMode() == self::OVERWRITE_CACHE_OLDER) {
+        if ($this->getConfig()->getOverwriteMode() == self::OVERWRITE_CACHE_OLDER) {
             
             $outputPath = $this->_getOutputPathOfCurrentFile();
             if (filemtime($this->_inputFilename) < filemtime($outputPath)) {
@@ -157,7 +157,7 @@ class Polycast_Filter_ImageSize implements Zend_Filter_Interface
     
     protected function _checkWritePermissions()
     {
-        if ($this->getConfig()->getOverrideMode() == self::OVERWRITE_NONE) {
+        if ($this->getConfig()->getOverwriteMode() == self::OVERWRITE_NONE) {
             
             $outputPath = $this->_getOutputPathOfCurrentFile();
             if (file_exists($outputPath)) {

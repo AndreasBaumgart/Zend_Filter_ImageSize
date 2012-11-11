@@ -17,7 +17,7 @@ class ExamplesTest extends ImageFilterTestCase
                ->setHeight(100)
                ->setQuality(50)
                ->setStrategy(new Polycast_Filter_ImageSize_Strategy_Fit())
-               ->setOverrideMode(Polycast_Filter_ImageSize::OVERWRITE_ALL)
+               ->setOverwriteMode(Polycast_Filter_ImageSize::OVERWRITE_ALL)
                ->getOutputImageType('png');
 
         $filter->setOutputPathBuilder(new Polycast_Filter_ImageSize_PathBuilder_Standard($outputDirectory));
@@ -44,7 +44,7 @@ class ExamplesTest extends ImageFilterTestCase
                ->setHeight(100)
                ->setQuality(50)
                ->setStrategy(new Polycast_Filter_ImageSize_Strategy_Crop())
-               ->setOverrideMode(Polycast_Filter_ImageSize::OVERWRITE_ALL)
+               ->setOverwriteMode(Polycast_Filter_ImageSize::OVERWRITE_ALL)
                ->getOutputImageType('png');
         
         $filter->setOutputPathBuilder(new Polycast_Filter_ImageSize_PathBuilder_Standard($outputDirectory));        
@@ -66,7 +66,7 @@ class ExamplesTest extends ImageFilterTestCase
                ->setHeight(100)
                ->setQuality(50)
                ->setStrategy(new Polycast_Filter_ImageSize_Strategy_Crop())
-               ->setOverrideMode(Polycast_Filter_ImageSize::OVERWRITE_ALL)
+               ->setOverwriteMode(Polycast_Filter_ImageSize::OVERWRITE_ALL)
         ; 
         $filter->setOutputPathBuilder(new ExamplesTest_CustomPathBuilder($outputDirectory)); 
         $outputPath = $filter->filter($inputPath); 
