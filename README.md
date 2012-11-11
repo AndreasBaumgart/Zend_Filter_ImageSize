@@ -57,7 +57,85 @@
     fclose($fh);
     ?>
 
- 
+## Humongous example
+
+    class NamedConfig extends Polycast_Filter_ImageSize_Configuration_Standard
+    {
+        protected $_templateName = null;
+
+        public function __construct($templateName)
+        {
+            $this->_templateName = $templateName;
+        }
+
+        public function getTemplateName()
+        {
+            return $this->_templateName;
+        }
+    }
+
+    class CustomPathBuilder implements Polycast_Filter_ImageSize_PathBuilder_Interface
+    {
+        private $_outputDir = null;
+
+        public function __construct($outputDir) 
+        {
+            $this->_outputDir = $outputDir;
+        }
+
+        public function buildPath($filename, Polycast_Filter_ImageSize_Configuration_Interface $config) 
+        {
+            $chunks = explode('.', strrev(basename($filename)), 2);
+            $basename = strrev(array_pop($chunks));
+            $ext = strrev(array_pop($chunks));
+
+            switch($config->getOutputImageType()) {
+
+                case 'jpeg': $ext = '.jpg'; break;
+                case 'gif': $ext = '.gif'; break;
+                case 'png': $ext = '.png'; break;
+
+                case 'auto':
+                case null:
+                default:
+                    $ext = ".$ext";
+            } 
+
+            if ($config instanceof NamedConfig) {
+                $postfix = $config->getTemplateName();
+            } else {
+                $postfix = sprintf('%sx%s-q%s', $config->getWidth(), $config->getHeight(), $config->getQuality());
+            }
+
+            $path = sprintf('%s/%s-%s%s',
+                $this->_outputDir,
+                $basename,
+                $postfix,
+                $ext
+            );
+
+            return $path;
+        }
+    }
+    
+    $filter = new Polycast_Filter_ImageSize(); 
+    $config = $filter->getConfig();
+
+    $config = new NamedConfig();
+    $config
+           ->setName('product-thumbnail-100x100')
+           ->setWidth(100)
+           ->setHeight(100)
+           ->setQuality(50)
+           ->setStrategy(new Polycast_Filter_ImageSize_Strategy_Crop())
+           ->setOverwriteMode(Polycast_Filter_ImageSize::OVERWRITE_ALL)
+    ; 
+    
+    $filter->setConfig($config);
+    $filter->setOutputPathBuilder(new CustomPathBuilder('images/thumbnails/')); 
+    $outputPath = $filter->filter('./rick.jpg'); 
+    
+
 ## More examples
 
 Have a look at the `tests/ExamplesTest.php` which demonstrates how to implement
