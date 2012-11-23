@@ -121,9 +121,8 @@
     $filter = new Polycast_Filter_ImageSize(); 
     $config = $filter->getConfig();
 
-    $config = new NamedConfig();
+    $config = new NamedConfig('product-thumbnail-100x100');
     $config
-           ->setName('product-thumbnail-100x100')
            ->setWidth(100)
            ->setHeight(100)
            ->setQuality(50)
