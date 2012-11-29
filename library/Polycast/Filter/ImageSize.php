@@ -265,7 +265,7 @@ class Polycast_Filter_ImageSize implements Zend_Filter_Interface
                     $detectedType = self::TYPE_JPEG;
                     break;
                 default:
-                    throw new Zend_FilterException('Failed to detect input image type.');
+                    throw new Zend_Filter_Exception('Failed to detect input image type.');
             }
             return $detectedType; 
             
