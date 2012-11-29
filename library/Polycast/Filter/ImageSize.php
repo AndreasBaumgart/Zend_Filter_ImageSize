@@ -81,9 +81,10 @@ class Polycast_Filter_ImageSize implements Zend_Filter_Interface
     /**
      * Constructor.
      */
-    public function __construct()
+    public function __construct(Polycast_Filter_ImageSize_Configuration_Interface $config = null)
     {
         $this->_checkDependencies();
+        $this->_config = $config;
     }
     
     /**
