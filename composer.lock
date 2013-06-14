@@ -1,0 +1,80 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
+    ],
+    "hash": "ddf7357225f86878890907f51b44798c",
+    "packages": [
+        {
+            "name": "zendframework/zendframework1",
+            "version": "1.12.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zendframework/zf1.git",
+                "reference": "release-1.12.3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://packages.zendframework.com/composer/zendframework-zendframework1-1.12.3-release-1.12.3-ac8240.zip",
+                "reference": "1.12.3",
+                "shasum": "463beddc9d9836e562bb076113798eb2b5490a1a"
+            },
+            "require": {
+                "php": ">=5.2.11"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-trunk": "1.12.x-dev",
+                    "dev-release-1.0": "1.0.x-dev",
+                    "dev-release-1.5": "1.5.x-dev",
+                    "dev-release-1.6": "1.6.x-dev",
+                    "dev-release-1.7": "1.7.x-dev",
+                    "dev-release-1.8": "1.8.x-dev",
+                    "dev-release-1.9": "1.9.x-dev",
+                    "dev-release-1.10": "1.10.x-dev",
+                    "dev-release-1.11": "1.11.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Zend": "library/"
+                }
+            },
+            "include-path": [
+                "library/"
+            ],
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "Zend Framework 1",
+            "homepage": "http://framework.zend.com/",
+            "keywords": [
+                "framework",
+                "zf1"
+            ],
+            "support": {
+                "source": "https://github.com/zendframework/zf1/tree/release-1.12.3",
+                "issues": "https://github.com/zendframework/zf1/issues"
+            },
+            "time": "2013-03-13 16:53:12"
+        }
+    ],
+    "packages-dev": [
+
+    ],
+    "aliases": [
+
+    ],
+    "minimum-stability": "stable",
+    "stability-flags": [
+
+    ],
+    "platform": {
+        "php": ">=5.2.4",
+        "ext-gd": "*"
+    },
+    "platform-dev": [
+
+    ]
+}

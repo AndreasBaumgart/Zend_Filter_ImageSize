@@ -2,9 +2,22 @@
     "name": "flagbit/zend-filter-imagesize",
     "type": "library",
     "require": {
-        "php": ">=5.2.4"
+        "php": ">=5.2.4",
+        "ext-gd": "*",
+        "zendframework/zendframework1": "*"
     },
     "autoload": {
-        "psr-0": {"Zend_Filter": "Zend"}
-    }
+        "psr-0": {
+            "Zend_Filter": "."
+        }
+    },
+    "include-path": [
+        "."
+    ],
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://packages.zendframework.com/"
+        }
+    ]
 }

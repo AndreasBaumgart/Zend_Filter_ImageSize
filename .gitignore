@@ -1,10 +1,10 @@
-.buildpath
-.project
-.settings/
-
+/.buildpath
 /.externalToolBuilders
+/.idea
 /.project
+/.settings/
 /build.xml
 /build.properties
 /build.default.properties
 /cache.properties
+/vendor
